@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PPG Post-PCI FFR Calculator</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input { margin: 5px; padding: 5px; }
+        button { padding: 5px 10px; cursor: pointer; }
+        #result { font-weight: bold; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>PPG Post PCI FFR Calculator</h2>
+
+	<h4>Is the Vessel you are measuring the LAD?</h4>
+	<input type="checkbox" id="Vessel1" name="Vessel1" value="LAD">
+	<label for="Vessel1"> Yes</label><br>
+
+
+	<h4>Initial FFR Value</h4>
+    
+    <input type="number" id="num1" step="0.01" placeholder="Enter intital FFR"><br>
+
+
+	<h4>PPG Value</h4>
+    <input type="number" id="num2" step="0.01" placeholder="Enter PPG Value"><br>
+    <button onclick="addNumbers()">Calculate</button>
+
+
+    <div style="height: 10px;"></div>
+    <div id="result"></div>
+<div style="height: 5px;"></div>
+    <div id="flow"></div>
+<div style="height: 5px;"></div>
+    <div id="flow%"></div>
+
+    <script>
+	
+	function roundDownToThreeDecimals(num) {
+  		return Math.floor(num * 1000) / 1000;
+	}
+
+
+	function addNumbers() {
+            // Get values from input fields
+            let n1 = document.getElementById('num1').value;
+            let n2 = document.getElementById('num2').value;
+
+	const checkboxElement = document.getElementById("Vessel1");
+	const isCheckedBoolean = checkboxElement.checked; // true or false
+	const isCheckedNumber = Number(isCheckedBoolean); // 1 or 0
+	
+            
+            // Convert to numbers and add
+            let sum = roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
+            let fIncrease = roundDownToThreeDecimals(sum - n1);
+		document.getElementById('flow').innerText = "Predicted FRR Increase: " + fIncrease;
+		document.getElementById('flow').style.fontWeight = "bold"
+            let fPercent = Math.round((fIncrease/n1)*100);
+		document.getElementById('flow%').innerText = "Predicted FRR Improvement: " + fPercent +"%";
+		document.getElementById('flow%').style.fontWeight = "bold"
+            // Display result
+		if ((sum >= 0.83) && (isCheckedBoolean)) {
+            	document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
+		document.getElementById('result').style.color = "green";
+		
+		} else if (sum >= 0.93) {
+		document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
+		document.getElementById('result').style.color = "green";
+
+		} else {
+        	document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Sub-optimal post-PCI FFR)";
+		document.getElementById('result').style.color = "red";
+
+    }
+        }
+    </script>
+	<div style="height: 30px;"></div>
+	<B4>Thresholds of 0.83 for the LAD and 0.93 for non-LAD vessels were applied to stratify patients into optimal or suboptimal post-PCI physiology.</B4>
+
+<style>
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<div style="height: 10px;"></div>
+<img src="TVF.png" class="responsive-img">
+<div style="height: 10px;"></div>
+<img src="Clinical Outcomes.png" class="responsive-img">
+<div style="height: 10px;"></div>
+
+<B4>All content and Post PCI prediction formula are from the paper below.</B4>
+<div style="height: 10px;"></div>
+
+<B4>Ikeda, K., Mizukami, T., Sakai, K., Bouisset, F., Jeroen Sonck, Adriaan Wilgenhof, Matsuo, H., Toshiro Shinke, Ando, H., Hada, M., Ko, B. S., Biscaglia, S., Rivero, F., Engstroem, T., Leone, A. M., Xavier, Fearon, W. F., Christiansen, E. H., Fournier, S., & Desta, L. (2025). Impact of Pullback Pressure Gradient on Clinical Outcomes after Percutaneous Coronary Interventions. Circulation Cardiovascular Interventions, 18(12), e016022–e016022. https://doi.org/10.1161/circinterventions.125.016022</B4>
+<div style="height: 10px;"></div>
+<a href="https://www.ahajournals.org/doi/full/10.1161/CIRCINTERVENTIONS.125.016022">Click to see full text</a>
+
+</body>
+</html>
