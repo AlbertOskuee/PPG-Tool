@@ -54,15 +54,7 @@
 	
             
             // Convert to numbers and add
-            let sum = roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
-				
-			if (sum > 1) {
-				let sum = 1;
-			} else if (sum < 0) {
-				let sum = 0;
-			}
-
-
+            let sum = Math.clamp(roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber))), 0, 1);
 		
             let fIncrease = roundDownToThreeDecimals(sum - n1);
 		document.getElementById('flow').innerText = "Predicted FFR Increase: " + fIncrease;
