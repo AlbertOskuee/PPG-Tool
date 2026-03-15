@@ -56,10 +56,10 @@
             // Convert to numbers and add
             let sum = roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
             let fIncrease = roundDownToThreeDecimals(sum - n1);
-		document.getElementById('flow').innerText = "Predicted FRR Increase: " + fIncrease;
+		document.getElementById('flow').innerText = "Predicted FFR Increase: " + fIncrease;
 		document.getElementById('flow').style.fontWeight = "bold"
             let fPercent = Math.round((fIncrease/n1)*100);
-		document.getElementById('flow%').innerText = "Predicted FRR Improvement: " + fPercent +"%";
+		document.getElementById('flow%').innerText = "Predicted FFR Improvement: " + fPercent +"%";
 		document.getElementById('flow%').style.fontWeight = "bold"
             // Display result
 		if ((sum >= 0.83) && (isCheckedBoolean)) {
