@@ -55,6 +55,15 @@
             
             // Convert to numbers and add
             let sum = roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
+				
+			if (sum > 1) {
+				let sum = 1;
+			} elseif (sum < 0) {
+				let sum = 0;
+			}
+
+
+		
             let fIncrease = roundDownToThreeDecimals(sum - n1);
 		document.getElementById('flow').innerText = "Predicted FFR Increase: " + fIncrease;
 		document.getElementById('flow').style.fontWeight = "bold"
@@ -64,17 +73,17 @@
             // Display result
 		if ((sum >= 0.83) && (isCheckedBoolean)) {
             	document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
-		document.getElementById('result').style.color = "green";
+				document.getElementById('result').style.color = "green";
 		
 		} else if (sum >= 0.93) {
-		document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
-		document.getElementById('result').style.color = "green";
+				document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
+				document.getElementById('result').style.color = "green";
 
 		} else {
-        	document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Sub-optimal post-PCI FFR)";
-		document.getElementById('result').style.color = "red";
+        		document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Sub-optimal post-PCI FFR)";
+				document.getElementById('result').style.color = "red";
 
-    }
+    	}
         }
     </script>
 	<div style="height: 30px;"></div>
