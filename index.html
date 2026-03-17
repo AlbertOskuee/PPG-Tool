@@ -42,7 +42,29 @@
   		return Math.floor(num * 1000) / 1000;
 	}
 
+	function clampToUnitInterval(value) {
+		return Math.min(1, Math.max(0, Number(value) || 0));
+	}
 
+	function syncInputPair(numberInputId, sliderInputId) {
+		const numberInput = document.getElementById(numberInputId);
+		const sliderInput = document.getElementById(sliderInputId);
+
+		numberInput.addEventListener('input', () => {
+			if (numberInput.value === '') {
+				sliderInput.value = 0;
+				return;
+			}
+
+			const clampedValue = clampToUnitInterval(numberInput.value);
+			numberInput.value = clampedValue;
+			sliderInput.value = clampedValue;
+		});
+
+		sliderInput.addEventListener('input', () => {
+			numberInput.value = sliderInput.value;
+		});
+	}
 	function addNumbers() {
             // Get values from input fields
             let n1 = document.getElementById('num1').value;
