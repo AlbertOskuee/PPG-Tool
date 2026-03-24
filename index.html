@@ -83,19 +83,9 @@
 		document.getElementById('flow%').innerText = "Predicted FFR Improvement: " + fPercent +"%";
 		document.getElementById('flow%').style.fontWeight = "bold"
             // Display result
-		if ((sum >= 0.83) && (isCheckedBoolean)) {
-            	document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
+        document.getElementById('result').innerText = "Post PCI FFR: " + sum;
 				document.getElementById('result').style.color = "green";
 		
-		} else if (sum >= 0.93) {
-				document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Optimal post-PCI FFR)";
-				document.getElementById('result').style.color = "green";
-
-		} else {
-        		document.getElementById('result').innerText = "Post PCI FFR: " + sum + " (Sub-optimal post-PCI FFR)";
-				document.getElementById('result').style.color = "red";
-
-    	}
         }
 
 	syncSliderValue('num1Slider', 'num1Value');
