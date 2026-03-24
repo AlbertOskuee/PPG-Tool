@@ -45,6 +45,9 @@
 	function roundDownToThreeDecimals(num) {
   		return Math.floor(num * 1000) / 1000;
 	}
+	function roundDownToTwoDecimals(num) {
+  		return Math.floor(num * 100) / 100;
+	}
 
 	function clampToUnitInterval(value) {
 		return Math.min(1, Math.max(0, Number(value) || 0));
@@ -75,8 +78,8 @@
 	
             
             // Convert to numbers and add
-            let sum = roundDownToThreeDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
-            let fIncrease = roundDownToThreeDecimals(sum - n1);
+            let sum = Math.round(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
+            let fIncrease = sum - n1;
 		document.getElementById('flow').innerText = "Predicted FFR Increase: " + fIncrease;
 		document.getElementById('flow').style.fontWeight = "bold"
             let fPercent = Math.round((fIncrease/n1)*100);
