@@ -78,8 +78,8 @@
 	
             
             // Convert to numbers and add
-            let sum = Math.round(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
-            let fIncrease = sum - n1;
+            let sum = roundDownToTwoDecimals(0.67 + (0.15*Number(n1)) + (0.20*Number(n2)) - (0.05*Number(isCheckedNumber)));
+            let fIncrease = roundDownToTwoDecimals(sum - n1);
 		document.getElementById('flow').innerText = "Predicted FFR Increase: " + fIncrease;
 		document.getElementById('flow').style.fontWeight = "bold"
             let fPercent = Math.round((fIncrease/n1)*100);
